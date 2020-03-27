@@ -92,10 +92,10 @@ class Partida:
 
 if __name__ == "__main__":
     # Todo lo que hay aqui es sólo para pruebas y habrá que borrarlo al acabar o antes.
-    # Prueba de crear un jugador y ver su nombre
+    # Prueba de crear un jugador y ver su información
     partida = Partida(1)
     partida.crear_jugadores(1, "Rafa")
     # Mostrar nombre jugador 1
-    jugador_a_buscar = j.Jugador(1, "Rafa")
+    jugador_a_buscar = j.Jugador(1)
     var = str(partida.jugadores[partida.jugadores.index(jugador_a_buscar)])
     print(var)
