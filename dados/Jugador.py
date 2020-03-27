@@ -7,8 +7,8 @@ from datetime import datetime
 class Jugador:
 
     # Constructor
-    def __init__(self, n_jugadores, nombre):
-        self.nj = n_jugadores  # Número de jugadores
+    def __init__(self, nj, nombre):
+        self.nj = nj  # Número del jugador
         self.nombre = nombre  # Nombre del jugador
         self.dados_jugador = d.Dados()  # Dados del jugador
         self.total_base = 0  # Variable para la puntuación total del jugador
@@ -19,43 +19,43 @@ class Jugador:
     # Getters & Setters
     @property
     def nj(self):
-        return self.nj
+        return self.__nj
 
     @nj.setter
     def nj(self, value):
-        self.nj = value
+        self.__nj = value
 
     @property
     def nombre(self):
-        return self.nombre
+        return self.__nombre
 
     @nombre.setter
     def nombre(self, value):
-        self.nombre = value
+        self.__nombre = value
 
     @property
     def dados_jugador(self):
-        return self.dados_jugador
+        return self.__dados_jugador
 
     @dados_jugador.setter
     def dados_jugador(self, value):
-        self.dados_jugador = value
+        self.__dados_jugador = value
 
     @property
     def total_base(self):
-        return self.total_base
+        return self.__total_base
 
     @total_base.setter
     def total_base(self, value):
-        self.total_base = value
+        self.__total_base = value
 
     @property
     def ptos(self):
-        return self.ptos
+        return self.__ptos
 
     @ptos.setter
     def ptos(self, value):
-        self.ptos = value
+        self.__ptos = value
 
     # Métodos
     def total_ptos(self, i):
@@ -128,7 +128,7 @@ class Jugador:
     def __eq__(self, other):
         if not isinstance(other, Jugador):
             raise TypeError
-        return self.nombre() == other.nombre()
+        return self.nj == other.nj
 
     def __str__(self):
-        return f"Jugador [nombre={self.nombre}, dados_jugador={self.dados_jugador}]"
+        return f"Jugador: {self.nombre}\nDados Jugador:\n{self.dados_jugador}"
