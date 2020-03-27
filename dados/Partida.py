@@ -2,31 +2,37 @@
 import dados.Jugador as j
 import dados.Dados as d
 
+
 class Partida:
-    def __init__(self, n_jugadores):
-        self.n_jugadores = n_jugadores
+    def __init__(self, nj):
+        self.n_jugadores = nj
         self.ronda = 1
-        self.jugador = []
-    
+        self.jugadores = []  # Equivale a ArrayList jugadores en Java
+
     @property
-    def get_n_jugadores(self):
-        return self.n_jugadores
+    def n_jugadores(self):
+        return self.__n_jugadores
 
     @n_jugadores.setter
-    def set_n_jugadores(self , n_jugadores):
-        self.n_jugadores = n_jugadores
+    def n_jugadores(self, value):
+        self.__n_jugadores = value
 
     @property
-    def get_ronda(self):
-        self.ronda
+    def ronda(self):
+        return self.__ronda
 
     @ronda.setter
-    def set_ronda(self , ronda):
-        self.ronda = ronda
+    def ronda(self, value):
+        self.__ronda = value
 
-
-    def crear_jugadores(self , nj , nombre):
-        self.jugador.append(j.Jugador(nj,nombre))
+    def crear_jugadores(self, nj, nombre):
+        """
+        Método para crear jugadores para la partida
+        :param nj:
+        :param nombre:
+        :return:
+        """
+        self.jugadores.append(j.Jugador(nj, nombre))
 
     @staticmethod
     def tirar_dados(player):
@@ -34,28 +40,30 @@ class Partida:
         return player.dados_jugador
 
     def muestra_tablero(self):
-        juegos = ["\tRisco","Trece","E.Mayor","E.Menor","E.Par","E.Impar","Trio","Seis","Cinco","Cuatro","Tres","Dos","As","Total"]
+        juegos = ["\tRisco", "Trece", "E.Mayor", "E.Menor", "E.Par", "E.Impar", "Trio", "Seis", "Cinco", "Cuatro",
+                  "Tres", "Dos", "As", "Total"]
 
-        for i in range (juegos):
-            print(juegos[i],"\t")
+        for i in juegos:
+            print(juegos[i] + "\t")
 
-        for i in range (self.get_n_jugadores):
-            for j in range (15):
-                if (j == 0):
-                    print("\n" , j)
+        for i in self.n_jugadores:
+            for j in range(0, 14):
+                if j == 0:
+                    print("\n", j)
                 else:
-                    if ():
-                        print()
+                    if False:  # Temporal para que no falle, cambiar, IMPORTANTE.
+                        print("")  # El fallo que da aqui es porque al ser False nunca lo va a ejecutar.
                     else:
                         print("\t")
 
     @staticmethod
-    def casilla_vacia(player , casilla):
-        if (player[casilla]) :
+    def casilla_vacia(player, casilla):
+        if player[casilla]:
             return True
-        else :
+        else:
             return False
-    
+
+    """
     @staticmethod
     def risco():
 
@@ -79,5 +87,15 @@ class Partida:
 
     @staticmethod
     def numero():
+    """
 
-    
+
+if __name__ == "__main__":
+    # Todo lo que hay aqui es sólo para pruebas y habrá que borrarlo al acabar o antes.
+    # Prueba de crear un jugador y ver su nombre
+    partida = Partida(1)
+    partida.crear_jugadores(1, "Rafa")
+    # Mostrar nombre jugador 1
+    jugador_a_buscar = j.Jugador(1, "Rafa")
+    var = str(partida.jugadores[partida.jugadores.index(jugador_a_buscar)])
+    print(var)

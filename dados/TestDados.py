@@ -34,7 +34,7 @@ if __name__ == "__main__":
 
             if cambioDados=="S":
                 nDadosCambiar= t.leer_entero("cuantos dados quieres cambiar")
-                print(player.dados_jugador.cambiarDados(nDadosCambiar))
+                print(player.dados_jugador.cambiar_dados(nDadosCambiar))
 
             opcion= m.Menu.gestionar()
             if opcion==1:
