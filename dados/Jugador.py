@@ -16,6 +16,48 @@ class Jugador:
         for i in range(0, 13):
             self.ptos.append(None)  # Array de puntuaciones, en el momento de la creación vacío
 
+    # Getters & Setters
+    @property
+    def nj(self):
+        return self.nj
+
+    @nj.setter
+    def nj(self, value):
+        self.nj = value
+
+    @property
+    def nombre(self):
+        return self.nombre
+
+    @nombre.setter
+    def nombre(self, value):
+        self.nombre = value
+
+    @property
+    def dados_jugador(self):
+        return self.dados_jugador
+
+    @dados_jugador.setter
+    def dados_jugador(self, value):
+        self.dados_jugador = value
+
+    @property
+    def total_base(self):
+        return self.total_base
+
+    @total_base.setter
+    def total_base(self, value):
+        self.total_base = value
+
+    @property
+    def ptos(self):
+        return self.ptos
+
+    @ptos.setter
+    def ptos(self, value):
+        self.ptos = value
+
+    # Métodos
     def total_ptos(self, i):
         """
         Método para calcular el total de puntos del jugador
