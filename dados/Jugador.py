@@ -7,9 +7,12 @@ from datetime import datetime
 class Jugador:
 
     # Constructor
-    def __init__(self, nj, nombre):
-        self.nj = nj  # Número del jugador
-        self.nombre = nombre  # Nombre del jugador
+    def __init__(self, *args):
+        if len(args) == 1:
+            self.nj = args[0]  # Número del jugador
+        if len(args) == 2:
+            self.nj = args[0]  # Número del jugador
+            self.nombre = args[1]  # Nombre del jugador
         self.dados_jugador = d.Dados()  # Dados del jugador
         self.total_base = 0  # Variable para la puntuación total del jugador
         self.ptos = []
