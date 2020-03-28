@@ -22,10 +22,9 @@ class Menu:
         Método para mostrar todas las opciones
         :return:
         """
-        i = 0
         print(f"\n**{self.titulo}")
-        for elemento in self.opciones:
-            print(f"({i + 1}) {elemento}")
+        for i in range(0, self.n_opciones):
+            print(f"({i + 1}) {self.opciones[i]}")
 
     def recoger_opcion(self):
         """

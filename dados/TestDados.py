@@ -2,88 +2,82 @@
 import utiles.Menu as m
 import utiles.Teclado as t
 import dados.Partida as p
-from dados import Partida
 import dados.Jugador as j
 
+opciones = "Risco", "Trece", "Escalera Mayor", "Escalera Menor ", "Escalera par", "Escalera impar", "Trio", "Seis", \
+           "Cinco", "Cuatro", "Tres", "Dos", "Ases "
+menu = m.Menu("Indique la opción que quiere realizar:", opciones)
 
-class TestPartida:
-    opciones = "Risco", "Trece", "Escalera Mayor", "Escalera Menor ", "Escalera par", "Escalera impar", "Trio", "Seis", "Cinco", "Cuatro", "Tres", "Dos", "Ases"
-    menu = m.Menu("Indique la opción que quiere realizar:", opciones)
+nJugadores = t.leer_entero("Indica cuantos jugadores sois: ")
 
+partida = p.Partida(nJugadores)
 
-if __name__ == "__main__":
-    nJugadores = t.leer_entero("Indica cuantos jugadores sois: ")
+for i in range(0, nJugadores):
+    nombre_tmp = input("Introduce el nombre del jugador: ")
+    partida.crear_jugadores(i, nombre_tmp)
 
-    partida = p.Partida(nJugadores)
+for i in range(1, 14):
+    for k in range(0, nJugadores):
+        player = partida.jugadores[partida.jugadores.index(j.Jugador(k))]
 
-    for i in range(0, nJugadores):
-        nombreTmp = input("Introduce el nombre del jugador")
-        p.Partida.crear_jugadores(i, nombreTmp)
-        i += 1
+        print(f"\nTurno {str(i)} del jugador {partida.jugadores[partida.jugadores.index(j.Jugador(k))].nombre}")
 
-    for i in range(1, 14):
-        for k in range(1, nJugadores + 1):
+        print(f"\nEn esta tirada obtienes: \n"
+              f"{partida.tirar_dados(partida.jugadores[partida.jugadores.index(j.Jugador(k))])}")
 
-            player = j.Jugador.get(p.Partida.jugadores.indexOf(j.Jugador(k)))
+        cambio_dados = input("\n¿Quieres cambiar algún dado? [S/N]: ").upper()
 
-            print("\n Turno " + i + "del jugador" + (p.Partida.jugadores.indexOf(j.Jugador(k))).getNombre())
+        if cambio_dados == "S":
+            ndados_cambiar = t.leer_entero("cuantos dados quieres cambiar")
+            print(player.dados_jugador.cambiar_dados(ndados_cambiar))
 
-            print("\nEn esta tirada obtienes:\n"
-                  + p.Partida.tirarDados(p.Partida.jugadores.get(p.Partida.jugadores.indexOf(j.Jugador(k)))))
+        opcion = menu.gestionar()
+        if opcion == 1:
+            print(partida.risco(player))
 
-            cambioDados = input("indique si quiere cambiar dados S").upper()
+        elif opcion == 2:
+            print(partida.trece(player))
 
-            if cambioDados == "S":
-                nDadosCambiar = t.leer_entero("cuantos dados quieres cambiar")
-            print(player.dados_jugador.cambiar_dados(nDadosCambiar))
+        elif opcion == 3:
+            print(partida.escalera_mayor(player))
 
-            opcion = m.Menu.gestionar()
-            if opcion == 1:
-                print(p.Partida.risco(player))
+        elif opcion == 4:
+            print(partida.escalera_menor(player))
 
-            elif opcion == 2:
-                print(p.Partida.trece(player))
+        elif opcion == 5:
+            print(partida.escalera_par(player))
 
-            elif opcion == 3:
-                print(p.Partida.escalera_mayor(player))
+        elif opcion == 6:
+            print(partida.escalera_impar(player))
 
-            elif opcion == 4:
-                print(p.Partida.escalera_menor(player))
+        elif opcion == 7:
+            print(partida.trio(player))
 
-            elif opcion == 5:
-                print(p.Partida.escalera_par(player))
+        elif opcion == 8:
+            print(partida.numero(player, 6))
 
-            elif opcion == 6:
-                print(p.Partida.escalera_impar(player))
+        elif opcion == 9:
+            print(partida.numero(player, 5))
 
-            elif opcion == 7:
-                print(p.Partida.trio(player))
+        elif opcion == 10:
+            print(partida.numero(player, 4))
 
-            elif opcion == 8:
-                print(p.Partida.numero(player, 6))
+        elif opcion == 11:
+            print(partida.numero(player, 3))
 
-            elif opcion == 9:
-                print(p.Partida.numero(player, 5))
+        elif opcion == 12:
+            print(partida.numero(player, 2))
 
-            elif opcion == 10:
-                print(p.Ppartida.numero(player, 4))
+        elif opcion == 13:
+            print(partida.numero(player, 1))
 
-            elif opcion == 11:
-                print(p.Partida.numero(player, 3))
+        else:
+            print("Opción no válida")
+            k -= 1
 
-            elif opcion == 12:
-                print(p.Partida.numero(player, 2))
+        partida.muestra_tablero()
 
-            elif opcion == 13:
-                print(p.Partida.numero(player, 1))
+        exporto = input("\nPulsa Intro para seguir o e para exportar tus datos actuales[Intro/e]: ")
 
-            else:
-                print("opcion no valida")
-                k -= 1
-
-            p.Partida.muestraTablero()
-
-            exporto = input("\nPulsa Intro para seguir o e para exportar tus datos actuales[Intro/e]: ")
-
-            if exporto == "E":
-                player.guarda_datos()
+        if exporto == "E":
+            player.guarda_datos()
