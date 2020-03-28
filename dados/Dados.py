@@ -5,22 +5,25 @@ import random
 class Dados:
 
     def __init__(self):
-        self.d1 = int(random.randint(1, 6))
-        self.d2 = int(random.randint(1, 6))
-        self.d3 = int(random.randint(1, 6))
+        self.set_d1()
+        self.set_d2()
+        self.set_d3()
 
+    @property
     def get_d1(self):
         return self.d1
 
     def set_d1(self):
         self.d1 = int(random.randint(1000, 6000))
 
+    @property
     def get_d2(self):
         return self.d2
 
     def set_d2(self):
         self.d2 = int(random.randint(1000, 6000))
 
+    @property
     def get_d3(self):
         return self.d3
 
