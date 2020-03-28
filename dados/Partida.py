@@ -65,28 +65,28 @@ class Partida:
 
     @staticmethod
     def risco(player):
-        if (
-                player.dados_jugador.get_d1() == player.dados_jugador.get_d2() or player.dados_jugador.get_d1() == player.dados_jugador.get_d3() or player.dados_jugador.get_d2() == player.dados_jugador.get_d3()) and player.dados_jugador.get_d1() + player.dados_jugador.get_d2() + player.dados_jugador.get_d3() == 13:
-            player.ptos.set(0, 50)
-            player.ptos.set(13, player.total_ptos(0))
-
+        if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 or player.dados_jugador.get_d1 == \
+                player.dados_jugador.get_d3 or player.dados_jugador.get_d2 == player.dados_jugador.get_d3 and \
+                player.dados_jugador.get_d1 + player.dados_jugador.get_d2 + player.dados_jugador.get_d3 == 13:
+            player.ptos.insert(0, 50)
+            player.ptos.insert(13, player.total_ptos(0))
             return "Casilla Risco completa, 50 puntos"
         else:
-            player.ptos.set(0, 0)
-            player.ptos.set(13, player.total_ptos(0))
-            return "Esta combinaciÃ³n de nÃºmeros no es un risco 0 puntos"
+            player.ptos.insert(0, 0)
+            player.ptos.insert(13, player.total_ptos(0))
+            return "Esta combinación de números no es un risco 0 puntos"
 
     @staticmethod
     def trece(player):
-        if player.dados_jugador.get_d1() + player.dados_jugador.get_d2() + player.dados_jugador.get_d3() == 13:
-            player.ptos.set(1, 26)
-            player.ptos.set(13, player.total_ptos(1))
+        if player.dados_jugador.get_d1 + player.dados_jugador.get_d2 + player.dados_jugador.get_d3 == 13:
+            player.ptos.insert(1, 26)
+            player.ptos.insert(13, player.total_ptos(1))
 
             return "Casilla trece completa, 26 puntos"
         else:
-            player.ptos.set(1, 0)
-            player.ptos.set(13, player.total_ptos(1))
-            return "Esta combinaciÃ³n de nÃºmeros no es un trece, 0 puntos"
+            player.ptos.insert(1, 0)
+            player.ptos.insert(13, player.total_ptos(1))
+            return "Esta combinación de números no es un trece, 0 puntos"
 
     @staticmethod
     def escalera_mayor(player):
@@ -95,22 +95,22 @@ class Partida:
         valord3 = False
 
         for i in range(4, 7):
-            if player.dados_jugador.get_d1() == i:
+            if player.dados_jugador.get_d1 == i:
                 valord1 = True
-            elif player.dados_jugador.get_d2() == i:
+            elif player.dados_jugador.get_d2 == i:
                 valord2 = True
-            elif player.dados_jugador.get_d3() == i:
+            elif player.dados_jugador.get_d3 == i:
                 valord3 = True
 
             else:
-                player.ptos.set(2, 0);
-                player.ptos.set(13, player.total_ptos(2))
+                player.ptos.insert(2, 0)
+                player.ptos.insert(13, player.total_ptos(2))
                 return "Esta combinaciÃ³n de dados no es una Escalera Mayor"
 
             if valord1 and valord2 and valord3:
-                player.ptos.set(2, 20)
-                player.ptos.set(13, player.total_ptos(2))
-                return "Esta combinación es una Escalera Mayor, 20 ptos";
+                player.ptos.insert(2, 20)
+                player.ptos.insert(13, player.total_ptos(2))
+                return "Esta combinación es una Escalera Mayor, 20 ptos"
 
     @staticmethod
     def escalera_menor(player):
@@ -119,22 +119,22 @@ class Partida:
         valord3 = False
 
         for i in range(1, 4):
-            if player.dados_jugador.get_d1() == i:
+            if player.dados_jugador.get_d1 == i:
                 valord1 = True
-            elif player.dados_jugador.get_d2() == i:
+            elif player.dados_jugador.get_d2 == i:
                 valord2 = True
-            elif player.dados_jugador.get_d3() == i:
+            elif player.dados_jugador.get_d3 == i:
                 valord3 = True
 
             else:
-                player.ptos.set(3, 0);
-                player.ptos.set(13, player.total_ptos(2))
-                return "Esta combinaciÃ³n de dados no es una Escalera Menor"
+                player.ptos.insert(3, 0)
+                player.ptos.insert(13, player.total_ptos(2))
+                return "Esta combinación de dados no es una Escalera Menor"
 
             if valord1 and valord2 and valord3:
-                player.ptos.set(3, 20)
-                player.ptos.set(13, player.total_ptos(3))
-                return "Esta combinaciÃ³n es una Escalera Menor, 20 ptos"
+                player.ptos.insert(3, 20)
+                player.ptos.insert(13, player.total_ptos(3))
+                return "Esta combinación es una Escalera Menor, 20 ptos"
 
     @staticmethod
     def escalera_par(player):
@@ -143,76 +143,70 @@ class Partida:
         valord3 = False
 
         for i in range(2, 7, 2):
-            if player.dados_jugador.get_d1() == i:
+            if player.dados_jugador.get_d1 == i:
                 valord1 = True
-            elif player.dados_jugador.get_d2() == i:
+            elif player.dados_jugador.get_d2 == i:
                 valord2 = True
-            elif player.dados_jugador.get_d3() == i:
+            elif player.dados_jugador.get_d3 == i:
                 valord3 = True
 
             else:
-                player.ptos.set(4, 0);
-                player.ptos.set(13, player.total_ptos(4))
-                return "Esta combinaciÃ³n de dados no es una Escalera Par";
+                player.ptos.insert(4, 0)
+                player.ptos.insert(13, player.total_ptos(4))
+                return "Esta combinación de dados no es una Escalera Par"
 
             if valord1 and valord2 and valord3:
-                player.ptos.set(4, 20)
-                player.ptos.set(13, player.total_ptos(4))
-                return "Esta combinaciÃ³n es una Escalera Par, 20 ptos";
-
+                player.ptos.insert(4, 20)
+                player.ptos.insert(13, player.total_ptos(4))
+                return "Esta combinación es una Escalera Par, 20 ptos"
 
     @staticmethod
-
-
     def escalera_impar(player):
         valord1 = False
         valord2 = False
         valord3 = False
 
         for i in range(1, 6, 2):
-            if player.dados_jugador.get_d1() == i:
+            if player.dados_jugador.get_d1 == i:
                 valord1 = True
-            elif player.dados_jugador.get_d2() == i:
+            elif player.dados_jugador.get_d2 == i:
                 valord2 = True
-            elif player.dados_jugador.get_d3() == i:
+            elif player.dados_jugador.get_d3 == i:
                 valord3 = True
 
             else:
-                player.ptos.set(5, 0);
-                player.ptos.set(13, player.total_ptos(5))
-                return "Esta combinaciÃ³n de dados no es una escalera impar";
+                player.ptos.insert(5, 0)
+                player.ptos.insert(13, player.total_ptos(5))
+                return "Esta combinación de dados no es una escalera impar"
 
             if valord1 and valord2 and valord3:
-                player.ptos.set(5, 20)
-                player.ptos.set(13, player.total_ptos(5))
-                return "Esta combinaciÃ³n es una escalera impar, 20 ptos";
-
+                player.ptos.insert(5, 20)
+                player.ptos.insert(13, player.total_ptos(5))
+                return "Esta combinación es una escalera impar, 20 ptos"
 
     @staticmethod
-
-
     def trio(player):
-        if player.dados_jugador.get_d1() == player.dados_jugador.get_d2() or player.dados_jugador.get_d1() and player.dados_jugador.get_d3():
-            player.ptos.set(6, 25)
-            player.ptos.set(13, player.total_ptos(6))
+        if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 or player.dados_jugador.get_d1() and \
+                player.dados_jugador.get_d3:
+            player.ptos.insert(6, 25)
+            player.ptos.insert(13, player.total_ptos(6))
             return "Casilla Trío completada, 25 ptos"
 
         else:
-            player.ptos.set(6, 0)
-            player.ptos.set(13, player.total_ptos(6))
-            return "Esta combinación de números no es un trío.";
-
+            player.ptos.insert(6, 0)
+            player.ptos.insert(13, player.total_ptos(6))
+            return "Esta combinación de números no es un trío."
 
     @staticmethod
     def numero(player, n):
         puntos = 0
-        if player.dados_jugador.get_d1() == n:
+        if player.dados_jugador.get_d1 == n:
             puntos += n
 
-        if player.dados_jugador.get_d1() == n:
+        if player.dados_jugador.get_d1 == n:
             puntos += n
 
-        if player.dados_jugador.get_d1() == n:
+        if player.dados_jugador.get_d1 == n:
             puntos += n
 
         casilla = 0
@@ -225,15 +219,15 @@ class Partida:
             casilla = 9
         elif n == 3:
             casilla = 10
-
         elif n == 2:
             casilla = 11
         elif n == 1:
             casilla = 12
 
-        player.ptos.set(casilla, puntos)
-        player.ptos.set(13, player.total_ptos(casilla))
+        player.ptos.insert(casilla, puntos)
+        player.ptos.insert(13, player.total_ptos(casilla))
         return "Casilla" + n + "completada con " + n + " ptos"
+
 
 """
 if __name__ == "__main__":

@@ -5,33 +5,33 @@ import random
 class Dados:
 
     def __init__(self):
-        self.set_d1()
-        self.set_d2()
-        self.set_d3()
+        self.d1 = int(random.randint(1, 6))
+        self.d2 = int(random.randint(1, 6))
+        self.d3 = int(random.randint(1, 6))
 
     @property
     def get_d1(self):
         return self.d1
 
     def set_d1(self):
-        self.d1 = int(random.randint(1000, 6000))
+        self.d1 = int(random.randint(1, 6))
 
     @property
     def get_d2(self):
         return self.d2
 
     def set_d2(self):
-        self.d2 = int(random.randint(1000, 6000))
+        self.d2 = int(random.randint(1, 6))
 
     @property
     def get_d3(self):
         return self.d3
 
     def set_d3(self):
-        self.d3 = int(random.randint(1000, 6000))
+        self.d3 = int(random.randint(1, 6))
 
     def __str__(self):
-        return "Dado 1: " + str(self.get_d1()) + "\nDado 2: " + str(self.get_d2()) + "\nDado 3: " + str(self.get_d3())
+        return "Dado 1: " + str(self.d1) + "\nDado 2: " + str(self.d2) + "\nDado 3: " + str(self.d3)
 
     def cambiar_dados(self, ndados_cambiar):
         if ndados_cambiar > 2:
@@ -60,7 +60,7 @@ class Dados:
                 self.set_d3()
                 cambiod3 = False
 
-            elif cambiod3 == False or cambiod2 == False or cambiod1 == False:
+            elif cambiod3 is False or cambiod2 is False or cambiod1 is False:
                 print("Dado " + str(dado) + " ya ha sido cambiado introduzca otro")
                 i -= 1
 
