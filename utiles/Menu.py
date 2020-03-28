@@ -23,7 +23,7 @@ class Menu:
         :return:
         """
         print(f"\n**{self.titulo}")
-        for i in range(0, self.n_opciones):
+        for i in range(self.n_opciones):
             print(f"({i + 1}) {self.opciones[i]}")
 
     def recoger_opcion(self):

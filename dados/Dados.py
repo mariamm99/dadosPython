@@ -41,7 +41,7 @@ class Dados:
             self.set_d2()
             self.set_d3()
 
-            return str()
+            return self.__str__()
 
         cambiod1 = True
         cambiod2 = True
@@ -67,5 +67,4 @@ class Dados:
             else:
                 print("Dado " + str(dado) + " no existe introduzca otro")
                 i -= 1
-
-        return str()
+        return self.__str__()

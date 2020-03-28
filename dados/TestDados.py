@@ -16,8 +16,8 @@ for i in range(0, nJugadores):
     nombre_tmp = input("Introduce el nombre del jugador: ")
     partida.crear_jugadores(i, nombre_tmp)
 
-for i in range(1, 14):
-    for k in range(0, nJugadores):
+for i in range(14):
+    for k in range(nJugadores):
         player = partida.jugadores[partida.jugadores.index(j.Jugador(k))]
 
         print(f"\nTurno {str(i)} del jugador {partida.jugadores[partida.jugadores.index(j.Jugador(k))].nombre}")
@@ -77,7 +77,9 @@ for i in range(1, 14):
 
         partida.muestra_tablero()
 
-        exporto = input("\nPulsa Intro para seguir o e para exportar tus datos actuales[Intro/e]: ")
+        exporto = input("\nPulsa Intro para seguir o e para exportar tus datos actuales[Intro/e]: ").upper()
 
         if exporto == "E":
-            player.guarda_datos()
+            player.crea_archivo()
+        else:
+            print("")

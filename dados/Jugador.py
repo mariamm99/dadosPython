@@ -16,7 +16,7 @@ class Jugador:
         self.dados_jugador = d.Dados()  # Dados del jugador
         self.total_base = 0  # Variable para la puntuación total del jugador
         self.ptos = []
-        for i in range(0, 13):
+        for i in range(15):
             self.ptos.append(None)  # Array de puntuaciones, en el momento de la creación vacío
 
     # Getters & Setters
