@@ -25,6 +25,9 @@ class Partida:
     def ronda(self, value):
         self.__ronda = value
 
+    def __str__(self):
+        return "\n Partida ronda=", self.ronda ,", nJugadores=", self.n_jugadores
+
     def crear_jugadores(self, nj, nombre):
         """
         Método para crear jugadores para la partida
