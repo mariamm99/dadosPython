@@ -36,7 +36,7 @@ class Dados:
     def cambiar_dados(self, ndados_cambiar):
         if ndados_cambiar > 2:
             if ndados_cambiar > 3:
-                print("solo puedes cambiar 3 dados, se cambiaran los 3")
+                print("Solo puedes cambiar 3 dados, se cambiaran los 3")
             self.set_d1()
             self.set_d2()
             self.set_d3()
@@ -49,7 +49,7 @@ class Dados:
 
         for i in range(0, ndados_cambiar):
             i += 1
-            dado = int(input("indique que dado quiere cambiar, 1 , 2 o 3"))
+            dado = int(input("Indique que dado quiere cambiar, 1 , 2 o 3"))
             if dado == 1 and cambiod1:
                 self.set_d1()
                 cambiod1 = False
@@ -67,3 +67,5 @@ class Dados:
             else:
                 print("Dado " + str(dado) + " no existe introduzca otro")
                 i -= 1
+
+        return str()
