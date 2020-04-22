@@ -6,15 +6,18 @@ from datetime import datetime
 
 class Jugador:
 
-    # Constructor
     def __init__(self, *args):
+        """
+        Constructor de Jugador
+        :param args: puede variar el número de argumentos pasados al constructor
+        """
         if len(args) == 1:
             self.nj = args[0]  # Número del jugador
         if len(args) == 2:
             self.nj = args[0]  # Número del jugador
             self.nombre = args[1]  # Nombre del jugador
         self.dados_jugador = d.Dados()  # Dados del jugador
-        self.total_base = 0  # Variable para la puntuación total del jugador
+        self.total_ptos = 0  # Variable para la puntuación total del jugador
         self.ptos = []
         for i in range(15):
             self.ptos.append(None)  # Array de puntuaciones, en el momento de la creación vacío
@@ -22,35 +25,64 @@ class Jugador:
     # Getters & Setters
     @property
     def nj(self):
+        """
+        :return:  numero de jugadores
+        """
         return self.__nj
 
     @nj.setter
     def nj(self, value):
+        """
+        Set de numero de jugador
+        :param value:
+        """
         self.__nj = value
 
     @property
     def nombre(self):
+        """
+        :return: nombre del jugador
+        """
         return self.__nombre
 
     @nombre.setter
     def nombre(self, value):
+        """
+        Set da valor al nombre del jugador
+        :param value:
+        """
         self.__nombre = value
 
     @property
     def dados_jugador(self):
+        """
+        :return: Dados del jugador
+        """
         return self.__dados_jugador
 
     @dados_jugador.setter
     def dados_jugador(self, value):
+        """
+        Da valor a los dados del jugador
+        :param value:
+        """
         self.__dados_jugador = value
 
     @property
-    def total_base(self):
-        return self.__total_base
+    def total_ptos(self):
+        """
+        puntos totales del jugador
+        :return: total_ptos
+        """
+        return self.__total_ptos
 
-    @total_base.setter
-    def total_base(self, value):
-        self.__total_base = value
+    @total_ptos.setter
+    def total_ptos(self, value):
+        """
+        Da valor a los puntos totales
+        :param value:
+        """
+        self.__total_ptos = value
 
     @property
     def ptos(self):
@@ -70,11 +102,11 @@ class Jugador:
         hay_ptos = False
 
         if self.ptos[i] is not None:
-            self.total_base += self.ptos[i]
+            self.total_ptos += self.ptos[i]
             hay_ptos = True
 
         if hay_ptos:
-            return self.total_base
+            return self.total_ptos
         else:
             return 0
 
