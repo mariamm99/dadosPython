@@ -49,7 +49,7 @@ class Partida:
             print(juegos[i], end="\t")
 
         for i in range(self.n_jugadores):
-            for k in range(0,15):
+            for k in range(0, 15):
 
                 if k == 0:
                     print("\n", self.jugadores[self.jugadores.index(j.Jugador(i))].nombre, "\t", end="\t")
@@ -61,42 +61,41 @@ class Partida:
                         print("\t", end="\t")
 
     @staticmethod
-    def casilla_vacia(player, casilla):
-        if player[casilla]:
-            return True
-        else:
-            return False
-
-    @staticmethod
     def risco(player):
+        if not casilla_vacia(player, 1):
+            return 50
         if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 or player.dados_jugador.get_d1 == \
                 player.dados_jugador.get_d3 or player.dados_jugador.get_d2 == player.dados_jugador.get_d3 and \
                 player.dados_jugador.get_d1 + player.dados_jugador.get_d2 + player.dados_jugador.get_d3 == 13:
             player.ptos.insert(1, 50)
             player.ptos.insert(14, player.total_ptos(1))
-            return "Casilla Risco completa, 50 puntos"
+            return 1
         else:
             player.ptos.insert(1, 0)
             player.ptos.insert(14, player.total_ptos(1))
-            return "Esta combinación de números no es un risco 0 puntos"
+            return 0
 
     @staticmethod
     def trece(player):
+        if not casilla_vacia(player, 2):
+            return 50
         if player.dados_jugador.get_d1 + player.dados_jugador.get_d2 + player.dados_jugador.get_d3 == 13:
             player.ptos.insert(2, 26)
             player.ptos.insert(14, player.total_ptos(2))
-
-            return "Casilla trece completa, 26 puntos"
+            return 1
         else:
             player.ptos.insert(2, 0)
             player.ptos.insert(14, player.total_ptos(2))
-            return "Esta combinación de números no es un trece, 0 puntos"
+            return 0
 
     @staticmethod
     def escalera_mayor(player):
         valord1 = False
         valord2 = False
         valord3 = False
+
+        if not casilla_vacia(player, 3):
+            return 50
 
         for i in range(4, 7):
             if player.dados_jugador.get_d1 == i:
@@ -109,18 +108,21 @@ class Partida:
             else:
                 player.ptos.insert(3, 0)
                 player.ptos.insert(14, player.total_ptos(3))
-                return "Esta combinaciÃ³n de dados no es una Escalera Mayor"
+                return 0
 
             if valord1 and valord2 and valord3:
                 player.ptos.insert(3, 20)
                 player.ptos.insert(14, player.total_ptos(3))
-                return "Esta combinación es una Escalera Mayor, 20 ptos"
+                return 1
 
     @staticmethod
     def escalera_menor(player):
         valord1 = False
         valord2 = False
         valord3 = False
+
+        if not casilla_vacia(player, 4):
+            return 50
 
         for i in range(1, 4):
             if player.dados_jugador.get_d1 == i:
@@ -133,18 +135,21 @@ class Partida:
             else:
                 player.ptos.insert(4, 0)
                 player.ptos.insert(14, player.total_ptos(4))
-                return "Esta combinación de dados no es una Escalera Menor"
+                return 0
 
             if valord1 and valord2 and valord3:
                 player.ptos.insert(4, 20)
                 player.ptos.insert(14, player.total_ptos(4))
-                return "Esta combinación es una Escalera Menor, 20 ptos"
+                return 1
 
     @staticmethod
     def escalera_par(player):
         valord1 = False
         valord2 = False
         valord3 = False
+
+        if not casilla_vacia(player, 5):
+            return 50
 
         for i in range(2, 7, 2):
             if player.dados_jugador.get_d1 == i:
@@ -157,18 +162,21 @@ class Partida:
             else:
                 player.ptos.insert(5, 0)
                 player.ptos.insert(14, player.total_ptos(5))
-                return "Esta combinación de dados no es una Escalera Par"
+                return 0
 
             if valord1 and valord2 and valord3:
                 player.ptos.insert(5, 20)
                 player.ptos.insert(14, player.total_ptos(5))
-                return "Esta combinación es una Escalera Par, 20 ptos"
+                return 1
 
     @staticmethod
     def escalera_impar(player):
         valord1 = False
         valord2 = False
         valord3 = False
+
+        if not casilla_vacia(player, 6):
+            return 50
 
         for i in range(1, 6, 2):
             if player.dados_jugador.get_d1 == i:
@@ -181,24 +189,26 @@ class Partida:
             else:
                 player.ptos.insert(6, 0)
                 player.ptos.insert(14, player.total_ptos(6))
-                return "Esta combinación de dados no es una escalera impar"
+                return 0
 
             if valord1 and valord2 and valord3:
                 player.ptos.insert(6, 20)
                 player.ptos.insert(14, player.total_ptos(6))
-                return "Esta combinación es una escalera impar, 20 ptos"
+                return 1
 
     @staticmethod
     def trio(player):
+        if not casilla_vacia(player, 7):
+            return 50
         if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 and player.dados_jugador.get_d1() == player.dados_jugador.get_d3:
             player.ptos.insert(7, 25)
             player.ptos.insert(14, player.total_ptos(7))
-            return "Casilla Trío completada, 25 ptos"
+            return 1
 
         else:
             player.ptos.insert(7, 0)
             player.ptos.insert(14, player.total_ptos(7))
-            return "Esta combinación de números no es un trío."
+            return 0
 
     @staticmethod
     def numero(player, n):
@@ -227,6 +237,16 @@ class Partida:
         elif n == 1:
             casilla = 13
 
+        if not casilla_vacia(player, casilla):
+            return 50
         player.ptos.insert(casilla, puntos)
         player.ptos.insert(14, player.total_ptos(casilla))
-        return "Casilla " + str(n) + " completada con " + str(n) + " ptos"
+        # return "Casilla " + str(n) + " completada con " + str(n) + " ptos"
+        return puntos
+
+
+def casilla_vacia(player, casilla):
+    if player.ptos[casilla] is None:
+        return True
+    else:
+        return False
