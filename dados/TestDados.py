@@ -1,4 +1,4 @@
- -*- coding: utf-8 -*-
+ #-*- coding: utf-8 -*-
 import utiles.Menu as m
 import utiles.Teclado as t
 import dados.Partida as p
