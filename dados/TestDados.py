@@ -3,11 +3,12 @@ import utiles.Menu as m
 import utiles.Teclado as t
 import dados.Partida as p
 import dados.Jugador as j
+import dados.Historial as h
 import os.path as path
 
 if __name__ == "__main__":
     opciones = "Risco", "Trece", "Escalera Mayor", "Escalera Menor ", "Escalera par", "Escalera impar", "Trio", "Seis", \
-               "Cinco", "Cuatro", "Tres", "Dos", "Ases "
+               "Cinco", "Cuatro", "Tres", "Dos", "Ases ", "Ver mi historial"
     menu = m.Menu("Indique la opción que quiere realizar:", opciones)
 
     nJugadores = t.leer_entero("Indica cuantos jugadores sois: ")
@@ -170,6 +171,10 @@ if __name__ == "__main__":
                     else:
                         print(f"Casilla ases completada con {juegoencurso} puntos.")
                         casilla_ocupada = False
+
+                elif opcion == 14:
+                    historial = h.Historial(player)
+                    print(historial)
 
                 else:
                     print("Opción no válida")
