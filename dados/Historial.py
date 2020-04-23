@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
-import sys
+import re
 
 class Historial:
     def __init__(self, player):
@@ -36,7 +35,7 @@ class Historial:
     @property
     def media_puntos(self):
         veces = 0
-        texto=texto()
+        texto=self.texto()
 
     @media_puntos.setter
     def media_puntos(self, value):
@@ -44,7 +43,7 @@ class Historial:
 
     @property
     def partidas_primero(self):
-        texto=texto()
+        texto=self.texto()
 
     @partidas_primero.setter
     def partidas_primero(self, value):
@@ -52,20 +51,33 @@ class Historial:
 
     @property
     def puesto_medio(self):
+        veces=0
+        texto=self.texto()
+        m = re.search("Puesto:\s+(.*?)\n", texto)
+
+        while (linea is not None ):
+            self.puesto_medio+=int(m.group(1))
+            linea=self.archivo.readlines()
+            veces+=1
+        return self.puesto_medio/veces
 
 
     @puesto_medio.setter
     def puesto_medio(self, value):
         self.puesto_medio=value
 
-    def abrir_fichero(self):
 
     def cuenta_lineas(self):
-        n_partidas=0
-
-    def leer_fichero(self):
+        return len(self.archivo.readlines())
 
     def texto(self):
+        try:
+            texto = open(self.archivo, "r", encoding="utf-8")
+            texto_leido = texto.read()
+            return texto_leido
+        except FileNotFoundError:
+            print("no se ha encontrado el archivo")
+            exit(3)
 
     def __str__(self):
 
