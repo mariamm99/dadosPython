@@ -48,30 +48,32 @@ class Historial:
 
     @property
     def puesto_medio(self):
-        return self.__puesto_medio
-        # Comento este getter también, ponlo después como vaya
-        # veces = 0
-        # texto = self.texto()
-        # m = re.search('Puesto:\s+(.*?)\n', texto)
-#
-        # while linea is not None:
-        #     self.puesto_medio += int(m.group(1))
-        #     print(self.puesto_medio)
-        #     linea = self.archivo.readlines()
-        #     veces += 1
-        # print(self.puesto_medio / veces)
-        # return 1
+        prog = re.compile('Puesto:\s+(.*?)\n')
+        texto_ = self.texto()
+        result = prog.match(texto_)
+        # m = prog.search(texto_)
+        # print(m)
+        #final=result.end()
+        #print(final)
+
+        #for i in range(final):
+            # self.puesto_medio += int(result.group())
+        #    print(result.group(i))
+
+        while re.search(prog, texto_):
+            print("aaaaaaaaaa")
+            self.puesto_medio += int(result.group(1))
+            print(self.puesto_medio)
+
+        return 1
 
     @puesto_medio.setter
     def puesto_medio(self, value):
         self.__puesto_medio = value
 
     def cuenta_lineas(self):
-        # Abro fichero (file_cuenta_lineas)
-        file_c_l = self.abrir_fichero()
-        # Inicializo contador
         contador = 0
-        for line in file_c_l:
+        for line in self.archivo:
             contador += 1
         return contador
 
