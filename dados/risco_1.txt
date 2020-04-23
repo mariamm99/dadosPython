@@ -1,0 +1,4 @@
+Fecha: 22/04/2020 ; Risco: 	 ; Trece:  0 ; E.Mayor: 	 ; E.Menor: 	 ; E.Par: 	 ; E.Impar: 	 ; Trio: 	 ; Seis: 	 ; Cinco: 	 ; Cuatro: 	 ; Tres: 	 ; Dos: 0 ; As: 	 ; Total: 0 ; Número jugadores: 1 ; Puesto: 1
+Fecha: 22/04/2020 ; Risco: 	 ; Trece:  0 ; E.Mayor: 	 ; E.Menor: 0 ; E.Par: 	 ; E.Impar: 	 ; Trio: 	 ; Seis: 	 ; Cinco: 	 ; Cuatro: 8 ; Tres: 	 ; Dos: 0 ; As: 	 ; Total: 8 ; Número jugadores: 1 ; Puesto: 1
+Fecha: 22/04/2020 ; Risco: 0 ; Trece:  0 ; E.Mayor: 	 ; E.Menor: 	 ; E.Par: 	 ; E.Impar: 	 ; Trio: 	 ; Seis: 	 ; Cinco: 	 ; Cuatro: 	 ; Tres: 	 ; Dos: 	 ; As: 	 ; Total: 0 ; Número jugadores: 2 ; Puesto: 2
+Fecha: 23/04/2020 ; Risco: 0 ; Trece:  0 ; E.Mayor: 0 ; E.Menor: 0 ; E.Par: 0 ; E.Impar: 0 ; Trio: 25 ; Seis: 12 ; Cinco: 10 ; Cuatro: 4 ; Tres: 0 ; Dos: 0 ; As: 0 ; Total: 51 ; Número jugadores: 1 ; Puesto: 1

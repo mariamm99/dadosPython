@@ -64,8 +64,8 @@ class Partida:
     def risco(player):
         if not casilla_vacia(player, 1):
             return 50
-        if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 or player.dados_jugador.get_d1 == \
-                player.dados_jugador.get_d3 or player.dados_jugador.get_d2 == player.dados_jugador.get_d3 and \
+        if (player.dados_jugador.get_d1 == player.dados_jugador.get_d2 or player.dados_jugador.get_d1 == \
+                player.dados_jugador.get_d3 or player.dados_jugador.get_d2 == player.dados_jugador.get_d3) and \
                 player.dados_jugador.get_d1 + player.dados_jugador.get_d2 + player.dados_jugador.get_d3 == 13:
             player.ptos.insert(1, 50)
             player.ptos.insert(14, player.total_ptos(1))
@@ -200,7 +200,7 @@ class Partida:
     def trio(player):
         if not casilla_vacia(player, 7):
             return 50
-        if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 and player.dados_jugador.get_d1() == player.dados_jugador.get_d3:
+        if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 and player.dados_jugador.get_d1 == player.dados_jugador.get_d3:
             player.ptos.insert(7, 25)
             player.ptos.insert(14, player.total_ptos(7))
             return 1
