@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import dados.Dados as d
+
 import sys
 
 class Historial:
@@ -10,39 +10,53 @@ class Historial:
         self.numero_partidas = cuenta_lineas()
         self.media_puntos = 0
         self.partidas_primero = 0
-        self.puesto_medio = 0;
+        self.puesto_medio = 0
 
     def nombre_jugador(self):
         return self.nombre_jugador
 
  #no se como hacer lo del buffer
-    def get_archivo(self):
+    @property
+    def archivo(self):
         return self.archivo
 
 #buffer igual
-    def set_archivo(self):
+    @archivo.setter
+    def archivo(self, value):
+        self.archivo=value
 
-    def get_numero_partidas(self):
+    @property
+    def numero_partidas(self):
         return self.numero_partidas
 
-    def set_numero_partidas(self, numero_partidas):
-        self.numero_partidas=numero_partidas
+    @numero_partidas.setter
+    def numero_partidas(self, value):
+        self.numero_partidas=value
 
-    def get_media_puntos(self):
+    @property
+    def media_puntos(self):
         veces = 0
         texto=texto()
 
-    def set_media_puntos(self, media_puntos):
-        self.media_puntos=media_puntos
+    @media_puntos.setter
+    def media_puntos(self, value):
+        self.media_puntos= value
 
-    def get_partidas_primero(self):
+    @property
+    def partidas_primero(self):
         texto=texto()
 
-    def set_partidas_primero(self):
+    @partidas_primero.setter
+    def partidas_primero(self, value):
+        self.partidas_primero=value
 
-    def get_puesto_medio(self):
+    @property
+    def puesto_medio(self):
 
-    def set_puesto_medio(self):
+
+    @puesto_medio.setter
+    def puesto_medio(self, value):
+        self.puesto_medio=value
 
     def abrir_fichero(self):
 
