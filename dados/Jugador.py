@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import dados.Dados as d
 import sys
-from datetime import datetime
+import time
 
 
 class Jugador:
@@ -17,7 +17,7 @@ class Jugador:
             self.nj = args[0]  # Número del jugador
             self.nombre = args[1]  # Nombre del jugador
         self.dados_jugador = d.Dados()  # Dados del jugador
-        self.total_ptos = 0  # Variable para la puntuación total del jugador
+        self.total_puntos = 0  # Variable para la puntuación total del jugador
         self.ptos = []
         for i in range(15):
             self.ptos.append(None)  # Array de puntuaciones, en el momento de la creación vacío
@@ -69,20 +69,20 @@ class Jugador:
         self.__dados_jugador = value
 
     @property
-    def total_ptos(self):
+    def total_puntos(self):
         """
         puntos totales del jugador
-        :return: total_ptos
+        :return: total_puntos
         """
-        return self.__total_ptos
+        return self.__total_puntos
 
-    @total_ptos.setter
-    def total_ptos(self, value):
+    @total_puntos.setter
+    def total_puntos(self, value):
         """
         Da valor a los puntos totales
         :param value:
         """
-        self.__total_ptos = value
+        self.__total_puntos = value
 
     @property
     def ptos(self):
@@ -102,11 +102,11 @@ class Jugador:
         hay_ptos = False
 
         if self.ptos[i] is not None:
-            self.total_ptos += self.ptos[i]
+            self.total_puntos += self.ptos[i]
             hay_ptos = True
 
         if hay_ptos:
-            return self.total_ptos
+            return self.total_puntos
         else:
             return 0
 
@@ -116,46 +116,44 @@ class Jugador:
 
         :return:
         """
-        nombre_fichero = f"{self.nombre}.txt"
+        nombre_fichero = f"risco_{self.nombre}.txt"
         try:
-            return open(nombre_fichero, "w")
+            return open(nombre_fichero, "a")
         except PermissionError or FileNotFoundError:
             print("ERROR al escribir en " + nombre_fichero, file=sys.stderr)
 
-    def guarda_datos(self):
+    def guarda_datos(self, n_jugadores, pos):
         """
         Método para escribir en un archivo los datos actuales del jugador.
+
+        Estructura:
+        Fecha: 21/04/2020 ; Risco: 50 ; Trece: 20 ; E.Mayor: 10 ; ... Total: 817 ; Número jugadores: 2 ; Puesto: 1
 
         :return:
         """
         file = self.crea_archivo()
 
-        # Nombre
-        file.write(f"Nombre de jugador: {self.nombre}")
-        file.newlines()
-        file.write("---------------------")
-        file.newlines()
-
-        # Dados
-        file.write(f"Dados actuales de {self.nombre}")
-        file.newlines()
-        file.write(self.dados_jugador)  # IMPORTANTE: Debe estar sobrecargado __str__ en Dados, quitar cuando esté
-        file.newlines()
+        # Fecha
+        date = time.strftime("%d/%m/%Y")  # Arreglar
+        file.write(f"Fecha: {date} ; ")
 
         # Puntuación
-        file.write(f"\nPuntuación actual de {self.nombre}")
-        file.newlines()
-        juegos = ["\nRisco → ", "Trece → ", "E.Mayor → ", "E.Menor → ", "E.Par → ", "E.Impar → ", "Trio → ", "Seis → ",
-                  "Cinco → ", "Cuatro → ", "Tres → ", "Dos → ", "As → ", "Total → "]
-        for i in juegos:
-            if self.ptos[i] is not None:
-                file.write(f"{juegos[i]}{self.ptos[i]}")
+        juegos = ["Risco: ", "Trece:  ", "E.Mayor: ", "E.Menor: ", "E.Par: ", "E.Impar: ", "Trio: ", "Seis: ",
+                  "Cinco: ", "Cuatro: ", "Tres: ", "Dos: ", "As: ", "Total: "]
+        for i in range(0, len(juegos)):
+            if self.ptos[i+1] is not None:
+                file.write(f"{juegos[i]}{self.ptos[i+1]} ; ")
             else:
-                file.write(f"{juegos[i]}\t")
-            file.newlines()
+                file.write(f"{juegos[i]}\t ; ")
+
+        # Número de jugadores
+        file.write(f"Número jugadores: {n_jugadores} ; ")  # 0 Cambiar por número real, que se pasará como param
+
+        # Puesto en la partida
+        file.write(f"Puesto: {pos}")  # 0 Cambiar por posición real, que se pasará como param
 
         # Final
-        file.write(f"Datos exportados a {datetime.now()}")
+        file.write("\n")
         file.close()
         print("Datos exportados.")
 

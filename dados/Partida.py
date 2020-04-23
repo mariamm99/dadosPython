@@ -244,6 +244,17 @@ class Partida:
         # return "Casilla " + str(n) + " completada con " + str(n) + " ptos"
         return puntos
 
+    def posicion(self, player):
+        pos = 1
+        puntos = player.ptos[14]  # Se coloca el número de la posición del total
+
+        for i in range(0, self.n_jugadores):
+            if self.jugadores[self.jugadores.index(j.Jugador(i))].ptos[14] is not None:
+                if self.jugadores[self.jugadores.index(j.Jugador(i))].ptos[14] > puntos:
+                    pos += 1
+
+        return pos
+
 
 def casilla_vacia(player, casilla):
     if player.ptos[casilla] is None:

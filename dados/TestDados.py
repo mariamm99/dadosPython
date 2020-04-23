@@ -1,8 +1,9 @@
- #-*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import utiles.Menu as m
 import utiles.Teclado as t
 import dados.Partida as p
 import dados.Jugador as j
+import os.path as path
 
 if __name__ == "__main__":
     opciones = "Risco", "Trece", "Escalera Mayor", "Escalera Menor ", "Escalera par", "Escalera impar", "Trio", "Seis", \
@@ -14,14 +15,21 @@ if __name__ == "__main__":
     partida = p.Partida(nJugadores)
 
     for i in range(0, nJugadores):
-        nombre_tmp = input("Introduce el nombre del jugador: ")
+        no_apto = True
+        while no_apto:
+            no_apto = False
+            nombre_tmp = input(f"Introduce el nombre del jugador {i+1}: ")
+            if path.exists(f"risco_{nombre_tmp}.txt"):
+                es_o_no_es = input("Este jugador ya ha jugado anteriormente, ¿realmente eres él? [S/N]: ").upper()
+                if not es_o_no_es == "S":
+                    no_apto = True
         partida.crear_jugadores(i, nombre_tmp)
 
     for i in range(14):
         for k in range(nJugadores):
             player = partida.jugadores[partida.jugadores.index(j.Jugador(k))]
 
-            print(f"\nTurno {str(i)} del jugador {partida.jugadores[partida.jugadores.index(j.Jugador(k))].nombre}")
+            print(f"\nTurno {str(i+1)} del jugador {partida.jugadores[partida.jugadores.index(j.Jugador(k))].nombre}")
 
             print(f"\nEn esta tirada obtienes: \n"
                   f"{partida.tirar_dados(partida.jugadores[partida.jugadores.index(j.Jugador(k))])}")
@@ -120,42 +128,48 @@ if __name__ == "__main__":
                     if juegoencurso == 50:
                         print("Casilla ocupada, indique una casilla vacía.")
                     else:
-                        print("Casilla seises completada con " + juegoencurso)
+                        print(f"Casilla seises completada con {juegoencurso} puntos.")
+                        casilla_ocupada = False
 
                 elif opcion == 9:
                     juegoencurso = partida.numero(player, 5)
                     if juegoencurso == 50:
                         print("Casilla ocupada, indique una casilla vacía.")
                     else:
-                        print("Casilla cincos completada con " + juegoencurso)
+                        print(f"Casilla cincos completada con {juegoencurso} puntos.")
+                        casilla_ocupada = False
 
                 elif opcion == 10:
                     juegoencurso = partida.numero(player, 4)
                     if juegoencurso == 50:
                         print("Casilla ocupada, indique una casilla vacía.")
                     else:
-                        print("Casilla cuatros completada con " + juegoencurso)
+                        print(f"Casilla cuatros completada con {juegoencurso} puntos.")
+                        casilla_ocupada = False
 
                 elif opcion == 11:
                     juegoencurso = partida.numero(player, 3)
                     if juegoencurso == 50:
                         print("Casilla ocupada, indique una casilla vacía.")
                     else:
-                        print("Casilla treses completada con " + juegoencurso)
+                        print(f"Casilla treses completada con {juegoencurso} puntos.")
+                        casilla_ocupada = False
 
                 elif opcion == 12:
                     juegoencurso = partida.numero(player, 2)
                     if juegoencurso == 50:
                         print("Casilla ocupada, indique una casilla vacía.")
                     else:
-                        print("Casilla doses completada con " + juegoencurso)
+                        print(f"Casilla doses completada con {juegoencurso} puntos.")
+                        casilla_ocupada = False
 
                 elif opcion == 13:
                     juegoencurso = partida.numero(player, 1)
                     if juegoencurso == 50:
                         print("Casilla ocupada, indique una casilla vacía.")
                     else:
-                        print("Casilla ases completada con " + juegoencurso)
+                        print(f"Casilla ases completada con {juegoencurso} puntos.")
+                        casilla_ocupada = False
 
                 else:
                     print("Opción no válida")
@@ -166,6 +180,7 @@ if __name__ == "__main__":
             exporto = input("\nPulsa Intro para seguir o e para exportar tus datos actuales[Intro/e]: ").upper()
 
             if exporto == "E":
-                player.crea_archivo()
+                pos = partida.posicion(player)
+                player.guarda_datos(nJugadores, pos)
             else:
                 print("")
