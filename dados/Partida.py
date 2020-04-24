@@ -4,6 +4,9 @@ import dados.Dados as d
 
 
 class Partida:
+    """
+    Clase para en la que se envuelve a los jugadores y contiene los juegos
+    """
     def __init__(self, nj):
         self.n_jugadores = nj
         self.ronda = 1
@@ -39,10 +42,19 @@ class Partida:
 
     @staticmethod
     def tirar_dados(player):
+        """
+        Método para que el jugador tire sus dados
+        :param player:
+        :return:
+        """
         player.dados_jugador = d.Dados()
         return player.dados_jugador
 
     def muestra_tablero(self):
+        """
+        Método que imprime por pantalla el tablero con las puntuaciones de cada jugador
+        :return:
+        """
         juegos = "\t", "Risco", "Trece", "E.Mayor", "E.Menor", "E.Par", "E.Impar", "Trio", "Seis", "Cinco", "Cuatro", "Tres", "Dos ", "As  ", "Total"
 
         for i in range(len(juegos)):
@@ -62,6 +74,11 @@ class Partida:
 
     @staticmethod
     def risco(player):
+        """
+        Método de comprobación de juego: Risco
+        :param player:
+        :return:
+        """
         if not casilla_vacia(player, 1):
             return 50
         if (player.dados_jugador.get_d1 == player.dados_jugador.get_d2 or player.dados_jugador.get_d1 == \
@@ -77,6 +94,11 @@ class Partida:
 
     @staticmethod
     def trece(player):
+        """
+        Método de comprobación de juego: Trece
+        :param player:
+        :return:
+        """
         if not casilla_vacia(player, 2):
             return 50
         if player.dados_jugador.get_d1 + player.dados_jugador.get_d2 + player.dados_jugador.get_d3 == 13:
@@ -90,6 +112,11 @@ class Partida:
 
     @staticmethod
     def escalera_mayor(player):
+        """
+        Método de comprobación de juego: Escalera mayor
+        :param player:
+        :return:
+        """
         valord1 = False
         valord2 = False
         valord3 = False
@@ -117,6 +144,11 @@ class Partida:
 
     @staticmethod
     def escalera_menor(player):
+        """
+        Método de comprobación de juego: Escalera menor
+        :param player:
+        :return:
+        """
         valord1 = False
         valord2 = False
         valord3 = False
@@ -144,6 +176,11 @@ class Partida:
 
     @staticmethod
     def escalera_par(player):
+        """
+        Método de comprobación de juego: Escalera par
+        :param player:
+        :return:
+        """
         valord1 = False
         valord2 = False
         valord3 = False
@@ -171,6 +208,11 @@ class Partida:
 
     @staticmethod
     def escalera_impar(player):
+        """
+        Método de comprobación de juego: Escalera impar
+        :param player:
+        :return:
+        """
         valord1 = False
         valord2 = False
         valord3 = False
@@ -198,6 +240,11 @@ class Partida:
 
     @staticmethod
     def trio(player):
+        """
+        Método de comprobación de juego: Trío
+        :param player:
+        :return:
+        """
         if not casilla_vacia(player, 7):
             return 50
         if player.dados_jugador.get_d1 == player.dados_jugador.get_d2 and player.dados_jugador.get_d1 == player.dados_jugador.get_d3:
@@ -212,6 +259,12 @@ class Partida:
 
     @staticmethod
     def numero(player, n):
+        """
+        Método de comprobación de juego: Seis, cinco, cuatro, tres, dos y as
+        :param player:
+        :param n:
+        :return:
+        """
         puntos = 0
         if player.dados_jugador.get_d1 == n:
             puntos += n
@@ -245,6 +298,13 @@ class Partida:
         return puntos
 
     def posicion(self, player):
+        """
+        Método para calcular la posición en la que va el jugador que se le pase como parámetro.
+        Compara la puntuación del jugador con la del resto, y si es mayor, incrementa la posición
+        en uno.
+        :param player:
+        :return:
+        """
         pos = 1
         puntos = player.ptos[14]  # Se coloca el número de la posición del total
 
@@ -257,6 +317,12 @@ class Partida:
 
 
 def casilla_vacia(player, casilla):
+    """
+    Método para comprobar si una casilla del tablero esta vacía.
+    :param player:
+    :param casilla:
+    :return:
+    """
     if player.ptos[casilla] is None:
         return True
     else:
