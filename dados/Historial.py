@@ -28,8 +28,16 @@ class Historial:
 
     @property
     def media_puntos(self):
-        veces = 0
-        return 2
+        puntos=0
+        prog = re.compile('Total:\s[0-9]{1,5}')
+        texto_ = self.texto()
+        lista_coincidencias = re.findall(prog, texto_)
+
+        for coincidencia in lista_coincidencias:
+            puntos += int(coincidencia[7:])
+
+            puntos_f = puntos / self.numero_partidas
+        return puntos_f
 
     @media_puntos.setter
     def media_puntos(self, value):
@@ -37,10 +45,15 @@ class Historial:
 
     @property
     def partidas_primero(self):
+        prog = re.compile('Puesto:\s1')
+        texto_ = self.texto()
+        lista_coincidencias = re.findall(prog, texto_)
+
+        for coincidencia in lista_coincidencias:
+            self.__partidas_primero += 1
+
         return self.__partidas_primero
-        # No sé que funcionalidad tenía, lo comento temporalmente (Rafa)
-        # texto = self.abrir_fichero()
-        # return 0
+
 
     @partidas_primero.setter
     def partidas_primero(self, value):
@@ -48,24 +61,17 @@ class Historial:
 
     @property
     def puesto_medio(self):
-        prog = re.compile('Puesto:\s+(.*?)\n')
+        posicion=0
+        prog = re.compile('Puesto:\s[0-9]{1,5}')
         texto_ = self.texto()
-        result = prog.match(texto_)
-        # m = prog.search(texto_)
-        # print(m)
-        #final=result.end()
-        #print(final)
+        lista_coincidencias = re.findall(prog, texto_)
 
-        #for i in range(final):
-            # self.puesto_medio += int(result.group())
-        #    print(result.group(i))
+        for coincidencia in lista_coincidencias:
+            posicion+=int(coincidencia[8:])
 
-        while re.search(prog, texto_):
-            print("aaaaaaaaaa")
-            self.puesto_medio += int(result.group(1))
-            print(self.puesto_medio)
+        posicion_f=posicion/self.numero_partidas
 
-        return 1
+        return posicion_f
 
     @puesto_medio.setter
     def puesto_medio(self, value):
@@ -84,8 +90,14 @@ class Historial:
             print("No se ha encontrado el archivo con tu historial.")
 
     def texto(self):
-        texto_leido = self.archivo.read()
-        return texto_leido
+        try:
+            abrir_archivo= open(f"risco_{self.nombre_jugador}.txt", "r", encoding="utf-8")
+            texto_leido = abrir_archivo.read()
+            return texto_leido
+        except FileNotFoundError:
+            print("No se ha encontrado el archivo con tu historial.")
+
+
 
     def __str__(self):
         # Comprobar que devuelve los valores bien una vez esté la clase acabada
