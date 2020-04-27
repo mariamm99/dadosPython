@@ -3,6 +3,9 @@ import utiles.Teclado as t
 
 
 class Menu:
+    """
+    Clase Menu. gestiona las opciones del menú.
+    """
     # Constructor Menu
     def __init__(self, titulo, opciones):
         self.titulo = titulo

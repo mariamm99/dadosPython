@@ -3,6 +3,11 @@ import random
 
 
 class Dados:
+    """
+    Método dados. Encargado de generar los dados de la partida de forma aleatoria de 1 al 6.
+    Muestra el resultado de los 3 dados.
+    Además, permite cambiar el resultado de los dados que quiera el jugador.
+    """
 
     def __init__(self):
         """

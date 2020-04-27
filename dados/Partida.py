@@ -5,7 +5,9 @@ import dados.Dados as d
 
 class Partida:
     """
-    Clase para en la que se envuelve a los jugadores y contiene los juegos
+    Clase para en la que se envuelve a los jugadores y contiene los juegos.
+    Controla la ronda de la partida y el número de Jugadores.
+
     """
     def __init__(self, nj):
         self.n_jugadores = nj

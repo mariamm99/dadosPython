@@ -7,6 +7,11 @@ import dados.Historial as h
 import os.path as path
 
 if __name__ == "__main__":
+    """
+    La clase TestPartida se encarga de la interacción con el usuario, consta
+    del método Main, ya que es la que se ejecuta de cara a los jugadores reales.
+    """
+
     opciones = "Risco", "Trece", "Escalera Mayor", "Escalera Menor ", "Escalera par", "Escalera impar", "Trio", "Seis", \
                "Cinco", "Cuatro", "Tres", "Dos", "Ases ", "Ver mi historial"
     menu = m.Menu("Indique la opción que quiere realizar:", opciones)

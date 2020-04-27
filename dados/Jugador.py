@@ -5,6 +5,15 @@ import time
 
 
 class Jugador:
+    """
+    Método Jugador. Crea el jugador con los datos de cada jugador: nombre, numero de jugador,
+    arraylist con las puntuaciones y el resultado de los dados del jugador.
+
+    Además de la información del jugador, en esta clase creamos el método encargado de exportar los datos
+    del jugador a un archivo txt que se llamara risco_<nombre del jugador>.txt. Esta función nos permitirá
+    guardar los datos de la partida( su puntuación, puesto en el que ha quedado, contra cuantos jugadores
+    jugaba, etc)
+    """
 
     def __init__(self, *args):
         """

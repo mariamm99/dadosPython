@@ -5,6 +5,11 @@ import dados.Jugador as j
 
 
 class Historial:
+    """
+    Historial es una clase para leer los ficheros de exportación de los
+    jugadores. Muestra la Fecha de la partida, las puntuaciones, el número de
+    jugadores que había y la posición del jugador en cuestión.
+    """
     def __init__(self, player):
         self.nombre_jugador = player.nombre
         file = self.abrir_fichero()
