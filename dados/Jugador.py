@@ -6,12 +6,12 @@ import time
 
 class Jugador:
     """
-    Método Jugador. Crea el jugador con los datos de cada jugador: nombre, numero de jugador,
+    Clase Jugador. Crea el jugador con los datos de cada jugador: nombre, numero de jugador,
     arraylist con las puntuaciones y el resultado de los dados del jugador.
 
     Además de la información del jugador, en esta clase creamos el método encargado de exportar los datos
-    del jugador a un archivo txt que se llamara risco_<nombre del jugador>.txt. Esta función nos permitirá
-    guardar los datos de la partida( su puntuación, puesto en el que ha quedado, contra cuantos jugadores
+    del jugador a un archivo txt que se llamara risco_<nombre del jugador>.txt. Este método nos permitirá
+    guardar los datos de la partida (su puntuación, puesto en el que ha quedado, contra cuantos jugadores
     jugaba, etc)
     """
 
@@ -106,7 +106,7 @@ class Jugador:
         """
         Método para calcular el total de puntos del jugador
         :param i:
-        :return:
+        :return: total de puntos del jugador
         """
         hay_ptos = False
 
@@ -123,7 +123,7 @@ class Jugador:
         """
         Método para crear archivos para la exportación de datos.
 
-        :return:
+        :return: el archivo
         """
         nombre_fichero = f"risco_{self.nombre}.txt"
         try:
@@ -137,8 +137,6 @@ class Jugador:
 
         Estructura:
         Fecha: 21/04/2020 ; Risco: 50 ; Trece: 20 ; E.Mayor: 10 ; ... Total: 817 ; Número jugadores: 2 ; Puesto: 1
-
-        :return:
         """
         file = self.crea_archivo()
 

@@ -5,9 +5,17 @@ import dados.Dados as d
 
 class Partida:
     """
-    Clase para en la que se envuelve a los jugadores y contiene los juegos.
-    Controla la ronda de la partida y el número de Jugadores.
+    Partida es la clase en la que se encuentran los métodos para todos los "juegos"
+    que se pueden jugar en el Risco, como el trío, la escalera mayor, etc.
 
+    Se tienen en cuenta la ronda y el número de jugadores que hay en la partida.
+
+    También contiene todos los jugadores de la clase Jugador que están jugando la
+    partida.
+
+    Además, desde aqui se pueden crear nuevos jugadores, tirar unos nuevos dados,
+    generar el tablero con todas las puntuaciones o calcular cual es la posición
+    en la que está el jugador.
     """
     def __init__(self, nj):
         self.n_jugadores = nj
@@ -38,7 +46,6 @@ class Partida:
         Método para crear jugadores para la partida
         :param nj:
         :param nombre:
-        :return:
         """
         self.jugadores.append(j.Jugador(nj, nombre))
 
@@ -47,7 +54,7 @@ class Partida:
         """
         Método para que el jugador tire sus dados
         :param player:
-        :return:
+        :return: dados del jugador
         """
         player.dados_jugador = d.Dados()
         return player.dados_jugador
@@ -55,7 +62,6 @@ class Partida:
     def muestra_tablero(self):
         """
         Método que imprime por pantalla el tablero con las puntuaciones de cada jugador
-        :return:
         """
         juegos = "\t", "Risco", "Trece", "E.Mayor", "E.Menor", "E.Par", "E.Impar", "Trio", "Seis", "Cinco", "Cuatro", "Tres", "Dos ", "As  ", "Total"
 
@@ -79,7 +85,7 @@ class Partida:
         """
         Método de comprobación de juego: Risco
         :param player:
-        :return:
+        :return: 1 si acierta, 0 si no y 50 si la casilla está vacía
         """
         if not casilla_vacia(player, 1):
             return 50
@@ -99,7 +105,7 @@ class Partida:
         """
         Método de comprobación de juego: Trece
         :param player:
-        :return:
+        :return: 1 si acierta, 0 si no y 50 si la casilla está vacía
         """
         if not casilla_vacia(player, 2):
             return 50
@@ -117,7 +123,7 @@ class Partida:
         """
         Método de comprobación de juego: Escalera mayor
         :param player:
-        :return:
+        :return: 1 si acierta, 0 si no y 50 si la casilla está vacía
         """
         valord1 = False
         valord2 = False
@@ -149,7 +155,7 @@ class Partida:
         """
         Método de comprobación de juego: Escalera menor
         :param player:
-        :return:
+        :return: 1 si acierta, 0 si no y 50 si la casilla está vacía
         """
         valord1 = False
         valord2 = False
@@ -181,7 +187,7 @@ class Partida:
         """
         Método de comprobación de juego: Escalera par
         :param player:
-        :return:
+        :return: 1 si acierta, 0 si no y 50 si la casilla está vacía
         """
         valord1 = False
         valord2 = False
@@ -213,7 +219,7 @@ class Partida:
         """
         Método de comprobación de juego: Escalera impar
         :param player:
-        :return:
+        :return: 1 si acierta, 0 si no y 50 si la casilla está vacía
         """
         valord1 = False
         valord2 = False
@@ -245,7 +251,7 @@ class Partida:
         """
         Método de comprobación de juego: Trío
         :param player:
-        :return:
+        :return: 1 si acierta, 0 si no y 50 si la casilla está vacía
         """
         if not casilla_vacia(player, 7):
             return 50
@@ -265,7 +271,7 @@ class Partida:
         Método de comprobación de juego: Seis, cinco, cuatro, tres, dos y as
         :param player:
         :param n:
-        :return:
+        :return: Puntos obtenidos o 50 si la casilla está vacía
         """
         puntos = 0
         if player.dados_jugador.get_d1 == n:
@@ -296,7 +302,6 @@ class Partida:
             return 50
         player.ptos.insert(casilla, puntos)
         player.ptos.insert(14, player.total_ptos(casilla))
-        # return "Casilla " + str(n) + " completada con " + str(n) + " ptos"
         return puntos
 
     def posicion(self, player):
@@ -305,7 +310,7 @@ class Partida:
         Compara la puntuación del jugador con la del resto, y si es mayor, incrementa la posición
         en uno.
         :param player:
-        :return:
+        :return: posición del jugador
         """
         pos = 1
         puntos = player.ptos[14]  # Se coloca el número de la posición del total
@@ -323,7 +328,7 @@ def casilla_vacia(player, casilla):
     Método para comprobar si una casilla del tablero esta vacía.
     :param player:
     :param casilla:
-    :return:
+    :return: boolean, True si la casilla está vacía, False si no está vacía
     """
     if player.ptos[casilla] is None:
         return True
