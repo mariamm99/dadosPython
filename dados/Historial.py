@@ -7,7 +7,8 @@ import dados.Jugador as j
 class Historial:
     """
     Historial es una clase para leer los ficheros de exportación de los
-    jugadores. Muestra la Fecha de la partida, las puntuaciones, el número de
+    jugadores que pueden crearse durante la partida.
+    Muestra la Fecha de la partida, las puntuaciones, el número de
     jugadores que había y la posición del jugador en cuestión.
     """
     def __init__(self, player):
@@ -23,7 +24,7 @@ class Historial:
     def nombre_jugador(self):
         """
         Devuelve el nombre del jugador
-        :return:
+        :return: nombre del jugador
         """
         return self.nombre_jugador
 
@@ -31,7 +32,7 @@ class Historial:
     def numero_partidas(self):
         """
         Devuelve el número de partidas
-        :return:
+        :return: nombre de partidas
         """
         return self.__numero_partidas
 
@@ -40,7 +41,6 @@ class Historial:
         """
         Define el número de partidas
         :param value:
-        :return:
         """
         self.__numero_partidas = value
 
@@ -48,7 +48,7 @@ class Historial:
     def media_puntos(self):
         """
         Devuelve la media de puntos
-        :return:
+        :return: media de puntos
         """
         puntos = 0
         prog = re.compile('Total:\s[0-9]{1,5}')
@@ -66,7 +66,6 @@ class Historial:
         """
         Define la media de puntos
         :param value:
-        :return:
         """
         self.media_pnts = value
 
@@ -74,7 +73,7 @@ class Historial:
     def partidas_primero(self):
         """
         Devuelve el número de partidas en las que el jugador ha quedado primero
-        :return:
+        :return: partidas en las que el jugador va primero
         """
         prog = re.compile('Puesto:\s1')
         texto_ = self.texto()
@@ -90,7 +89,6 @@ class Historial:
         """
         Define el número de partidas en las que el jugador ha quedado primero
         :param value:
-        :return:
         """
         self.__partidas_primero = value
 
@@ -98,7 +96,7 @@ class Historial:
     def puesto_medio(self):
         """
         Devuelve el puesto medio del jugador
-        :return:
+        :return: posición media del jugador
         """
         posicion = 0
         prog = re.compile('Puesto:\s[0-9]{1,5}')
@@ -125,7 +123,6 @@ class Historial:
         """
         Cuenta todas las líneas del fichero, como cada línea es una partida, podemos considerar que
         hay tantas partidas como líneas.
-        :return:
         """
         contador = 0
         for line in self.archivo:
@@ -135,7 +132,6 @@ class Historial:
     def abrir_fichero(self):
         """
         Abre el fichero con la información del jugador
-        :return:
         """
         try:
             return open(f"risco_{self.nombre_jugador}.txt", "r", encoding="utf-8")
@@ -145,7 +141,7 @@ class Historial:
     def texto(self):
         """
         Lee el texto del fichero
-        :return:
+        :return: texto del fichero
         """
         try:
             abrir_archivo = open(f"risco_{self.nombre_jugador}.txt", "r", encoding="utf-8")

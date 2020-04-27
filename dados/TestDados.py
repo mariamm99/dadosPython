@@ -8,10 +8,12 @@ import os.path as path
 
 if __name__ == "__main__":
     """
-    La clase TestPartida se encarga de la interacción con el usuario, consta
-    del método Main, ya que es la que se ejecuta de cara a los jugadores reales.
+    TestPartida es la clase que interactúa directamente con el usuario.
+    Aqui se crea una partida nueva y se imprimen por pantalla toda la
+    información necesaria para el desarrollo de la partida, como las
+    opciones que tiene el jugador o mostrar el tablero del juego con
+    las puntuaciones.
     """
-
     opciones = "Risco", "Trece", "Escalera Mayor", "Escalera Menor ", "Escalera par", "Escalera impar", "Trio", "Seis", \
                "Cinco", "Cuatro", "Tres", "Dos", "Ases ", "Ver mi historial"
     menu = m.Menu("Indique la opción que quiere realizar:", opciones)
